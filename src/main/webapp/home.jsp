@@ -16,16 +16,19 @@
 </head>
 <body>
 	trang home shopee
-	<c:forEach items="${ProductList}" var="product">
-		<div class="card" style="width: 18rem;">
-			<img src="..." class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">${product.name}</h5>
-				<p class="card-text">${product.price}.</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
+	<div class="d-flex flex-wrap">
+		<c:forEach items="${ProductList}" var="product">
+			<div class="card" style="width: 18rem;">
+				<img src="${product.image}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">${product.name}</h5>
+					<p class="card-text">${product.price}.</p>
+					<a href="product-detail?id=${product.id}" class="btn btn-primary">Go somewhere</a>
+				</div>
 			</div>
-		</div>
-	</c:forEach>
+		</c:forEach>
+	</div>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
