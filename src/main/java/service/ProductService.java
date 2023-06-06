@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -56,5 +57,25 @@ public class ProductService {
 		}
 		
 		return product;
+	}
+	
+	public static void saveProduct(Product product) {
+		try {
+			Connection conn = Connect.openConnect();
+			PreparedStatement statement = conn.prepareStatement(
+					"INSERT INTO products (name, price, image, description) "
+					+ "VALUES (?, ?, ?, ?)");
+			
+			statement.setString(1, product.getName());
+			statement.setDouble(2, product.getPrice());
+			statement.setString(3, product.getImage());
+			statement.setString(4, product.getDescription());
+			
+			statement.execute();
+			
+			conn.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 }
